@@ -16,21 +16,21 @@ export default {
     data(){
         return {
             banks:[
-                {
-                    code:'002',
-                    name:'KDB산업은행',
-                    src:'kdb.png'
-                },
-                {
-                    code:'003',
-                    name:'IBK기업은행',
-                    src:'ibk.png'
-                },
-                {
-                    code:'004',
-                    name:'KB국민은행',
-                    src:'kb.png'
-                }
+                // {
+                //     code:'002',
+                //     name:'KDB산업은행',
+                //     src:'kdb.png'
+                // },
+                // {
+                //     code:'003',
+                //     name:'IBK기업은행',
+                //     src:'ibk.png'
+                // },
+                // {
+                //     code:'004',
+                //     name:'KB국민은행',
+                //     src:'kb.png'
+                // }
             ]
         }
     },
@@ -38,6 +38,9 @@ export default {
         next(index){ 
             this.$router.push({name:'accno-page', params:{...this.banks[index]}});
         }
+    },
+    mounted(){
+        this.banks = this.$store.getters.getBanks;
     }
 }
 </script>
@@ -56,23 +59,27 @@ export default {
     }
 
     .bank_box > .bank{
-        display: flex;
+        /* display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
+        text-align: center;
+        display: grid;
+        grid-template-rows: 60% 40%;
         background-color: rgb(248,248,248);
-        padding: 10px;
+        padding: 8px;
         border-radius: 10px;
         transition: all 0.5s;
+        gap: 5px;
     }
 
     .bank_box > .bank > img{
         width: 30%;
+        margin: auto;
     }
 
     .bank_box > .bank > p{
-        font-size: 14px;
-        padding-top: 10px;
+        font-size: 0.8em;
     }
 
     .bank:hover{

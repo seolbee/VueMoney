@@ -53,9 +53,8 @@ export default {
 </script>
 <style scoped>
     div{
-        padding: 30px 20px;
-        position: relative;
-        height: 100%;
+        padding:20px;
+        height: calc(100% - 63px);
     }
 
     form{
@@ -81,17 +80,17 @@ export default {
     }
 
     .input_box > img{
-        width: 8%;
+        width: 30px;
     }
 
     button{
-        position: absolute;
-        bottom: 63px;
-        left: 0;
         width: 100%;
         font-size: 20px;
         padding: 10px 13px;
         background-color: #5be7c4;
         color: white;
+        position: absolute;
+        left: 0;
+        bottom: 0;
     }
 </style>

@@ -11,9 +11,9 @@ a{
     color: black;
 }
 
-html, body{
-    height: 100vh;
+body{
     width: 100vw;
+    overflow-x:hidden;
 }
 
 .slide-enter-active, .slide-leave-enter{

@@ -1,12 +1,29 @@
 <template>
-    <div>
-        <h1>사용 내역</h1>
-        <div class="use_list">
-            <div class="use">
-                <img src="../../assets/icons/burger.png" alt="img" class="icon"/>
-                <p>식/음료</p>
-                <p>2,000원</p>
-            </div>
+    <div class="use_list">
+        <div class="use">
+            <img src="../../assets/icons/burger.png" alt="img" class="icon"/>
+            <p>식/음료</p>
+            <p>20,000원</p>
+        </div>
+        <div class="use">
+            <img src="../../assets/icons/millennial.png" alt="img" class="icon"/>
+            <p>여가/문화</p>
+            <p>10,000원</p>
+        </div>
+        <div class="use">
+            <img src="../../assets/icons/pencil.png" alt="img" class="icon"/>
+            <p>문구</p>
+            <p>400원</p>
+        </div>
+        <div class="use">
+            <img src="../../assets/icons/toys.png" alt="img" class="icon"/>
+            <p>완구</p>
+            <p>12,000원</p>
+        </div>
+        <div class="use">
+            <img src="../../assets/icons/wardrobe.png" alt="img" class="icon"/>
+            <p>의류</p>
+            <p>12,000원</p>
         </div>
     </div>
 </template>
@@ -19,7 +36,8 @@ export default {
     .use_list{
         display:grid;
         grid-auto-rows: 70px;
-        margin: 10px 0;
+        padding: 20px;
+        height: 420px;
     }
 
     .use{
@@ -32,7 +50,7 @@ export default {
     }
 
     .use > img{
-        width: 100%;
+        width: 90%;
     }
 
     .use > p{

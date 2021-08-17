@@ -71,7 +71,6 @@ export default {
         nextMonth(date){
             console.log(date);
             this.date = new Date(Date.parse(date) + 1000 * 3600 * 24 * this.toDates);
-            console.log(this.date);
             this.getCalendar();
         }
     },

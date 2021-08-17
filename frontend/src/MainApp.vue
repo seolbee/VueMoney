@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
 <script>
 export default {
@@ -14,10 +12,4 @@ export default {
 }
 </script>
 <style scoped>
-    div{
-        /* width:480px; */
-        height: 100%;
-        /* background-color: #fafffd; */
-        overflow-y:hidden;
-    }
 </style>

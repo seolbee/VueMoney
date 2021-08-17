@@ -33,13 +33,13 @@ export default {
     .navigator{
         background-color: #fff;
         display: flex;
-        width: 100%;
         justify-content: space-around;
         height: 50px;
         align-items: center;
         position: fixed;
-        bottom: 0;
+        bottom: 0px;
         border-top: 1px solid rgb(250,250,250);
+        width: 100%;
     }
 
     .navigator > .icon-box > *{

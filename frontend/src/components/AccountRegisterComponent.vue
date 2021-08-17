@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>계좌등록</h1>
         <transition name="slide">
             <router-view></router-view>
@@ -16,8 +16,10 @@ export default {
 }
 </script>
 <style scoped>
-    div{
-        overflow-x:hidden;
+    .container{
+        height: 100vh;
+        overflow:hidden;
+        position: relative;
     }
     
     h1{
