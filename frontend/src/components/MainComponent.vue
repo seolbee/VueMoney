@@ -30,16 +30,19 @@
             </div>
         </div>
         <navigator></navigator>
+        <toast msg="안녕하세요"></toast>
     </div>
 </template>
 <script>
 import navigator from '@/components/section/NavigatorComponent';
 import UseList from '@/components/section/UseListComponent';
+import Toast from '@/components/section/ToastMessageComponent';
 // import axios from 'axios';
 export default {
     components:{
         'navigator':navigator,
-        'use-list' :UseList
+        'use-list' :UseList,
+        'toast' : Toast
     },
     data(){
         return{
@@ -61,6 +64,61 @@ export default {
                     money : 5900,
                     num : '1234567890',
                     icon : 'nh.png'
+                },
+                {
+                    name : '수협은행',
+                    money : 6000,
+                    num : '1234567890',
+                    icon : 'suheub.png'
+                },
+                {
+                    name : '대구은행',
+                    money : 6100,
+                    num : '1234567890',
+                    icon : 'dg.png'
+                },
+                {
+                    name : '부산은행',
+                    money : 6200,
+                    num : '1234567890',
+                    icon : 'bnk.png'
+                },
+                {
+                    name : '경남은행',
+                    money : 6300,
+                    num : '1234567890',
+                    icon : 'bnk.png'
+                },
+                {
+                    name : '신한은행',
+                    money : 6400,
+                    num : '1234567890',
+                    icon : 'shinhan.png'
+                },
+                {
+                    name : '우리은행',
+                    money : 6500,
+                    num : '1234567890',
+                    icon : 'woolee.png'
+                },
+                {
+                    name : 'KBANK은행',
+                    money : 6600,
+                    num : '1234567890',
+                    icon : 'kbank.png'
+                },
+                {
+                    name : 'kakao뱅크',
+                    money : 6700,
+                    num : '1234567890',
+                    icon : 'kakao.png'
+                }
+                ,
+                {
+                    name : '하나은행',
+                    money : 6800,
+                    num : '1234567890',
+                    icon : 'hana.png'
                 }
 
             ],
@@ -208,6 +266,10 @@ export default {
         bottom: 20px;
     }
 
+    .accountment > .acc_num{
+        font-size: 15px;
+    }
+
     .accountment.kb{
         background-color: rgb(209, 207, 203);
         color: white;
@@ -220,6 +282,46 @@ export default {
 
     .accountment.nh{
         background-color: #53ce70;
+        color: white;
+    }
+
+    .accountment.suheub{
+        background-color:#9dccf7;
+        color: white;
+    }
+
+    .accountment.dg{
+        background-color:#96b9de;
+        color: white;
+    }
+
+    .accountment.bnk{
+        background-color: #ffb5b5;
+        color: white;
+    }
+
+    .accountment.shinhan{
+        background-color:#48a6d1;
+        color: white;
+    }
+
+    .accountment.woolee{
+        background-color: #8ae0f9;
+        color: white;
+    }
+
+    .accountment.kbank{
+        background-color: #ff7893;
+        color: white;
+    }
+
+    .accountment.kakao{
+        background-color: #ffe812;
+        color: black;
+    }
+
+    .accountment.hana{
+        background-color: #679090;
         color: white;
     }
 

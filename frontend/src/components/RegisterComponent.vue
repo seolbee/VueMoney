@@ -100,6 +100,8 @@ div{
     flex-direction: column;
     align-items: center;
     justify-content:center;
+    width: 100vw;
+    height: 100vh;
 }
 
 form{
@@ -108,10 +110,11 @@ form{
     padding: 0 20px;
 }
 .input-box {
-    margin: 20px 0;
+    /* margin: 10px 0; */
     position: relative;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     height: 100px;
+    width: 100%;
 }
 
 .input-box > label {

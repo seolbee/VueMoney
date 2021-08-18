@@ -69,10 +69,11 @@ div{
     flex-direction: column;
     align-items: center;
     justify-content:center;
+    width: 100vw;
+    height: 100vh;
 }
 
 form{
-    /* padding: 0 0px; */
     width: 80%;
     padding: 0 20px;
 }
@@ -81,6 +82,7 @@ form{
     position: relative;
     padding: 10px 0;
     height: 100px;
+    width: 100%;
 }
 
 .input-box > label {
