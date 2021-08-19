@@ -1,14 +1,17 @@
 <template>
-    <p enter-active="showAlert" ref="alert">{{this.msg}}</p>
+    <transition v-if="show" @enter="showAlert" @leave="showAlert">
+        <p>{{this.msg}}</p>
+    </transition>
 </template>
 <script>
 export default {
     props:{
-        msg:String
+        msg:String,
+        show:false
     },
     methods : {
-        showAlert(){
-            this.$refs.alert.style.bottom="70px";
+        showAlert(el){
+            el.style.bottom="70px";
         }
     }
 }
@@ -19,7 +22,7 @@ export default {
         color: white;
         position: fixed;
         bottom: -70px;
-        width: 80%;
+        width: 60%;
         text-align: center;
         padding: 15px 0;
         border-radius: 30px;

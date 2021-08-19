@@ -30,7 +30,7 @@
             </div>
         </div>
         <navigator></navigator>
-        <toast msg="안녕하세요"></toast>
+        <toast msg="안녕하세요" :show="true"></toast>
     </div>
 </template>
 <script>
