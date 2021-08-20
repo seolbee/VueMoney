@@ -16,7 +16,7 @@ body{
     overflow-x:hidden;
 }
 
-.slide-enter-active, .slide-leave-enter{
+.slide-enter-active, .slide-leave-active{
     /* transform: translateX(0);
     opacity: 1; */
     transition: opacity 0.5s, transform 0.5s;
@@ -30,6 +30,18 @@ body{
     transform : translateX(-100%);
     opacity: 0;
 }
+
+.alert-enter-active, .alert-leave-active{
+    transition: all 0.5s;
+    bottom: 70px;
+}
+/* 
+.alert-enter{
+    bottom: -70px;
+}
+.alert-leave-to{
+    bottom: -70px;
+} */
 
 button{
     border: none;

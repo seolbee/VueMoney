@@ -42,4 +42,8 @@ router.get('/lists', async function(req, res){
     db.close();
 });
 
+router.get("/history/:finTechNum", async function(req, res){
+    
+});
+
 module.exports = router;

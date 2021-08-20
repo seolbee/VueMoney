@@ -41,7 +41,7 @@ router.post('/login', async function(req, res){
 });
 
 router.post("/session", async function(req, res){
-    if(req.session.user !== undefined) return;
+    console.log(req.cookies['users']);
     let uid = req.cookies['user'];
     let db = await getDB();
     let dbo = db.db('money');

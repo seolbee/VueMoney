@@ -6,11 +6,12 @@
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
                         <div class="accountment_container" ref="container">
-                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]">
+                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="ussageView()">
                                 <div class="top">
                                     <img :src="require(`../assets/logos/${user.icon}`)" alt="img">
                                     <p class="name">{{user.name}}</p>
                                 </div>
+                                <!-- <p class="acc_num">{{user.accno}}</p> -->
                                 <p class="acc_num">{{user.num}}</p>
                                 <p class="acc_money">{{user.money.toLocaleString()}}원</p>
                             </div>
@@ -30,7 +31,6 @@
             </div>
         </div>
         <navigator></navigator>
-        <toast msg="안녕하세요" :show="true"></toast>
     </div>
 </template>
 <script>
@@ -160,12 +160,20 @@ export default {
         changeAccount(index){
             this.active = index;
             this.$refs.container.style.left = `-${this.active * 360}px`;
+        },
+        usageView(){
+            this.$router.push(`/usage/${this.users[this.active].finTechNum}`);
         }
     },
     async mounted(){
         // let res = await axios.get('/bank/lists');
-        // this.users = res.data.data;
-        // console.log(this.users);
+        // let bank_list = this.$store.getters.getBanks;
+        // this.users = res.data.data.map(x=> {
+        //     let bank = bank_list.find(b => b.code == x.code);
+        //     x.icon = bank.src;
+        //     x.money *= 1;
+        //     return x;
+        // });
     }
 }
 </script>

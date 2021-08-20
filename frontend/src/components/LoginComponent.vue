@@ -16,8 +16,12 @@
     </div>
 </template>
 <script>
+import Toast from '@/components/section/ToastMessageComponent'
 import axios from 'axios';
 export default {
+    components : {
+        'toast' : Toast
+    },
     data(){
         return {
             user : {
@@ -28,17 +32,26 @@ export default {
                 id: 0,
                 password:0
             },
-            active:0
+            active:0,
+            msg : '',
+            show : false
         }
     },
     methods:{
         login(){
             axios.post("/auth/login", this.user).then(res=>{
-                alert(res.data.msg);
-                if(res.data.success) {
-                    this.$store.commit("setUser", res.data.user);
-                    this.$router.push("/");
-                }
+                this.msg = res.data.msg;
+                this.show = true;
+
+                setTimeOut(()=>{
+                    this.show = false;
+                }, 3000);
+                setTimeOut(()=>{
+                    if(res.data.success) {
+                        this.$store.commit("setUser", res.data.user);
+                        this.$router.push("/");
+                    }
+                }, 5000);
             });
         },
         focusing(a){

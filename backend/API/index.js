@@ -24,7 +24,6 @@ function getFinTechNum(user_seq_no, token, code, accno){
     return new Promise((resolve, reject) => {
         request(options, (err, res, body)=>{
             let result =  JSON.parse(body);
-            console.log(result);
             let list = [];
             list = result.res_list;
             let account = list.find(x=> x.bank_code_std == code && x.account_num_masked.substring(0, x.account_num_masked.length - 3) == accno.substring(0, accno.length - 3));

@@ -25,11 +25,16 @@
             </div>
             <button class="btn">회원가입</button>
         </form>
+        <toast :show="show" :msg="msg"/>
     </div>
 </template>
 <script>
+import ToastMsg from '@/components/section/ToastMessageComponent';
 import axios from 'axios';
 export default {
+    components : {
+        'toast' : ToastMsg
+    },
     data(){
         return {
             user : {
@@ -47,7 +52,9 @@ export default {
                 password:0,
                 passwordc:0
             },
-            active:0
+            active:0,
+            show:false,
+            msg:''
         }
     },
     methods:{
@@ -60,8 +67,14 @@ export default {
             }
             if(this.is_user.id === -1 || this.is_user.name === -1 || this.is_user.password === -1 || this.is_user.passwordc === -1) return false;
             axios.post('/auth/register', this.user).then(res=>{
-                alert(res.data.msg);
-                if(res.data.success) this.$router.push('login');
+                this.msg = res.data.msg;
+                this.show = true;
+                setTimeOut(()=>{
+                    this.show = false;
+                }, 3000);
+                setTimeOut(()=>{
+                    if(res.data.success) this.$router.push('login');
+                }, 5000);
             });
             
         },

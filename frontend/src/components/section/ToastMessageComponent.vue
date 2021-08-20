@@ -1,24 +1,26 @@
 <template>
-    <transition v-if="show" @enter="showAlert" @leave="showAlert">
+    <transition v-if="show" @after-enter="showAlert" @leave="cancelAlert">
         <p>{{this.msg}}</p>
     </transition>
 </template>
 <script>
 export default {
-    props:{
-        msg:String,
-        show:false
-    },
+    props:['msg', 'show'],
     methods : {
-        showAlert(el){
+        showAlert(el, done){
             el.style.bottom="70px";
+            done();
+        },
+        cancelAlert(el){
+            el.style.bottom="-70px";
+            done();
         }
     }
 }
 </script>
 <style scoped>
     p{
-        background-color: #555;
+        background-color: #444;
         color: white;
         position: fixed;
         bottom: -70px;
