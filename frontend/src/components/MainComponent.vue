@@ -6,12 +6,12 @@
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
                         <div class="accountment_container" ref="container">
-                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="ussageView()">
+                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="usageView()">
                                 <div class="top">
                                     <img :src="require(`../assets/logos/${user.icon}`)" alt="img">
                                     <p class="name">{{user.name}}</p>
                                 </div>
-                                <!-- <p class="acc_num">{{user.accno}}</p> -->
+                                <p class="acc_num">{{user.accno}}</p>
                                 <p class="acc_num">{{user.num}}</p>
                                 <p class="acc_money">{{user.money.toLocaleString()}}원</p>
                             </div>
@@ -27,7 +27,7 @@
                         <div class="circle" :key="users.length" :class="{'active' : users.length == active}" @click="changeAccount(users.length)"></div>
                     </div>
                 </div>
-                <use-list/>
+                <!-- <use-list :finTechNum="users[active].finTechNum" v-if="users.length != 0"/> -->
             </div>
         </div>
         <navigator></navigator>
@@ -37,7 +37,7 @@
 import navigator from '@/components/section/NavigatorComponent';
 import UseList from '@/components/section/UseListComponent';
 import Toast from '@/components/section/ToastMessageComponent';
-// import axios from 'axios';
+import axios from 'axios';
 export default {
     components:{
         'navigator':navigator,
@@ -162,7 +162,7 @@ export default {
             this.$refs.container.style.left = `-${this.active * 360}px`;
         },
         usageView(){
-            this.$router.push(`/usage/${this.users[this.active].finTechNum}`);
+            this.$router.push({path:'/accounts/history'});
         }
     },
     async mounted(){

@@ -13,6 +13,7 @@
             </div>
             <button>로그인</button>
         </form>
+        <toast :msg="msg" :show="show"/>
     </div>
 </template>
 <script>
@@ -38,21 +39,21 @@ export default {
         }
     },
     methods:{
-        login(){
-            axios.post("/auth/login", this.user).then(res=>{
-                this.msg = res.data.msg;
-                this.show = true;
-
-                setTimeOut(()=>{
-                    this.show = false;
-                }, 3000);
-                setTimeOut(()=>{
-                    if(res.data.success) {
-                        this.$store.commit("setUser", res.data.user);
-                        this.$router.push("/");
-                    }
-                }, 5000);
-            });
+        async login(){
+            let res = await axios.post("/auth/login", this.user);
+            this.msg = res.data.msg;
+            this.show = true;
+            setTimeout(()=>{
+                this.show = false;
+            }, 1500);
+            setTimeout(()=>{
+                if(res.data.success) {
+                    this.$store.commit("setUser", res.data.user);
+                    this.$router.push("/");
+                }
+                this.$store.commit("setUser", res.data.user);
+                this.$router.push("/");
+            }, 2000);
         },
         focusing(a){
             this.active = a;

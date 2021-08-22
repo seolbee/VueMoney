@@ -52,4 +52,8 @@ router.post("/session", async function(req, res){
     req.session.save();
 });
 
+router.post('/authNum', async function(req, res){
+    
+});
+
 module.exports = router;

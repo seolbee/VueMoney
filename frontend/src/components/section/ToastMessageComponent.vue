@@ -7,13 +7,11 @@
 export default {
     props:['msg', 'show'],
     methods : {
-        showAlert(el, done){
+        showAlert(el){
             el.style.bottom="70px";
-            done();
         },
         cancelAlert(el){
             el.style.bottom="-70px";
-            done();
         }
     }
 }

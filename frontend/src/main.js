@@ -36,13 +36,11 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   mounted(){
-    window.addEventListener('beforeunload', async function(){
-      let res = await axios.post('/auth/session');
-      console.log(res);
-    })
   },
   beforeunload: function(){
-    console.log('0');
+    window.addEventListener('beforeunload', async function(){
+      await axios.post('/auth/session');
+    })
   },
   el: '#app',
   router,

@@ -58,7 +58,7 @@ export default {
         }
     },
     methods:{
-        register(){
+        async register(){
             if(this.user.id.trim() === "" || this.user.name.trim() === "" || this.user.password.trim() === "" || this.user.passwordc.trim() === ""){
                 this.is_user.id = -1;
                 this.is_user.name = -1;
@@ -66,17 +66,15 @@ export default {
                 this.is_user.passwordc = -1;
             }
             if(this.is_user.id === -1 || this.is_user.name === -1 || this.is_user.password === -1 || this.is_user.passwordc === -1) return false;
-            axios.post('/auth/register', this.user).then(res=>{
-                this.msg = res.data.msg;
-                this.show = true;
-                setTimeOut(()=>{
-                    this.show = false;
-                }, 3000);
-                setTimeOut(()=>{
-                    if(res.data.success) this.$router.push('login');
-                }, 5000);
-            });
-            
+            let res = await axios.post('/auth/register', this.user);
+            this.msg = res.data.msg;
+            this.show = true;
+            setTimeout(()=>{
+                this.show = false;
+            }, 1500);
+            setTimeout(()=>{
+                if(res.data.success) this.$router.push('login');
+            }, 2000);
         },
         focusing(a){
             this.active = a;

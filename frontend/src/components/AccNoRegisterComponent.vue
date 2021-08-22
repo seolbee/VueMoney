@@ -8,11 +8,16 @@
             </div>
             <button>계좌 등록</button>
         </form>
+        <toast :show="show" :msg="msg"/>
     </div>
 </template>
 <script>
 import axios from 'axios';
+import Toast from '@/components/section/ToastMessageComponent';
 export default {
+    components:{
+        'toast' : Toast
+    },
     props:{
         code:{
             type:String
@@ -27,7 +32,9 @@ export default {
     data(){
         return {
             accno:'',
-            active : false
+            active : false,
+            show:false,
+            msg:''
         }
     },
     methods:{
@@ -37,8 +44,14 @@ export default {
             let code = this.code;
             let name = this.name;
             let res = await axios.post('/bank/register', {code, name, accno});
-            alert(res.data.msg);
-            if(res.data.success) this.$router.push('/');
+            this.show=true;
+            this.msg="계좌등록 완료";
+            setTimeout(()=>{
+                this.show=false;
+            }, 1500)
+            setTimeout(()=>{
+                if(res.data.success) this.$router.push('/');
+            }, 2000)
         },
         focus(){
             this.active = true;

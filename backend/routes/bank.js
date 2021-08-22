@@ -35,7 +35,9 @@ router.get('/lists', async function(req, res){
         return res.json({success:false, msg:'계좌가 없습니다. 계좌를 등록하세요'});
     }
     for(account of accounts){
-        account.money = await getBalance(req.session.user.acctoken, account.finTechNum);
+        let result = await getBalance(req.session.user.acctoken, account.finTechNum);
+        account.money = result.money;
+        account.finTechNum = result.finTechNum;
     }
 
     res.json({success: true, data:accounts});
@@ -43,7 +45,9 @@ router.get('/lists', async function(req, res){
 });
 
 router.get("/history/:finTechNum", async function(req, res){
-    
+    let finTechNum = req.params.finTechNum;
+    let data = await getAccountBalance(req.session.user.acctoken, finTechNum);
+    res.json({data:data});
 });
 
 module.exports = router;
