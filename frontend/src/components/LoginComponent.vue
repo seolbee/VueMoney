@@ -46,14 +46,12 @@ export default {
             setTimeout(()=>{
                 this.show = false;
             }, 1500);
-            setTimeout(()=>{
-                if(res.data.success) {
+            if(res.data.success) {
+                setTimeout(()=>{
                     this.$store.commit("setUser", res.data.user);
                     this.$router.push("/");
-                }
-                this.$store.commit("setUser", res.data.user);
-                this.$router.push("/");
-            }, 2000);
+                }, 2000);       
+            }
         },
         focusing(a){
             this.active = a;

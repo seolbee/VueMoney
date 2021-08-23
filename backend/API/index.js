@@ -82,7 +82,6 @@ function getBalance(token, fintech_use_num){
 function getAccountBalance(token, fintech_use_num){
     let date = new Date();
     let dtime = `${date.getFullYear()}${format(date.getMonth() + 1)}${format(date.getDate())}${format(date.getHours())}${format(date.getMinutes())}${format(date.getSeconds())}`;
-    console.log(dtime.substring(0, 8));
     let options = {
         url : 'https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num',
         methods : 'GET',
@@ -105,7 +104,7 @@ function getAccountBalance(token, fintech_use_num){
         request(options, (err, res, body)=>{
             let result = JSON.parse(body);
             let list = result.res_list;
-            console.log(list);
+            list = list.filter(x=> x.print_content!= '오픈상여금');
             resolve(list);
         });
     });

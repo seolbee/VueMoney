@@ -20,27 +20,25 @@ import '../src/assets/css/app.css';
 
 Vue.config.productionTip = false
 
-// router.beforeEach((to, from, next)=>{
-//   let isLogin = to.meta.isLogin;
-//   let user = store.getters.getUser;
-//   if(isLogin && user == null){
-//     return next('/login');
-//   }
+router.beforeEach((to, from, next)=>{
+  let isLogin = to.meta.isLogin;
+  let user = store.getters.getUser;
+  if(isLogin && user == null){
+    return next('/login');
+  }
 
-//   if(!isLogin && user != null){
-//     return next('/');
-//   }
-//   next();
-// });
+  if(!isLogin && user != null){
+    return next('/');
+  }
+  next();
+});
 
 /* eslint-disable no-new */
 new Vue({
-  mounted(){
-  },
-  beforeunload: function(){
-    window.addEventListener('beforeunload', async function(){
-      await axios.post('/auth/session');
-    })
+  async created(){
+    let res = await axios.post('/auth/session');
+    console.log(res.data.user);
+    store.commit('setUser', res.data.user);
   },
   el: '#app',
   router,

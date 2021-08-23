@@ -27,8 +27,8 @@
                         <div class="circle" :key="users.length" :class="{'active' : users.length == active}" @click="changeAccount(users.length)"></div>
                     </div>
                 </div>
-                <!-- <use-list :finTechNum="users[active].finTechNum" v-if="users.length != 0"/> -->
-                <use-list/>
+                <use-list :finTechNum="users[active].finTechNum" v-if="users.length != 0"/>
+                <!-- <use-list/> -->
             </div>
         </div>
         <!-- <navigator></navigator> -->
@@ -48,79 +48,79 @@ export default {
     data(){
         return{
             users:[
-                {
-                    name : 'KB국민은행',
-                    money : 5700,
-                    num : '1234567890',
-                    icon : 'kb.png'
-                },
-                {
-                    name : 'IBK기업은행',
-                    money : 5800,
-                    num : '1234567890',
-                    icon : 'ibk.png'
-                },
-                {
-                    name : 'NH농협은행',
-                    money : 5900,
-                    num : '1234567890',
-                    icon : 'nh.png'
-                },
-                {
-                    name : '수협은행',
-                    money : 6000,
-                    num : '1234567890',
-                    icon : 'suheub.png'
-                },
-                {
-                    name : '대구은행',
-                    money : 6100,
-                    num : '1234567890',
-                    icon : 'dg.png'
-                },
-                {
-                    name : '부산은행',
-                    money : 6200,
-                    num : '1234567890',
-                    icon : 'bnk.png'
-                },
-                {
-                    name : '경남은행',
-                    money : 6300,
-                    num : '1234567890',
-                    icon : 'bnk.png'
-                },
-                {
-                    name : '신한은행',
-                    money : 6400,
-                    num : '1234567890',
-                    icon : 'shinhan.png'
-                },
-                {
-                    name : '우리은행',
-                    money : 6500,
-                    num : '1234567890',
-                    icon : 'woolee.png'
-                },
-                {
-                    name : 'KBANK은행',
-                    money : 6600,
-                    num : '1234567890',
-                    icon : 'kbank.png'
-                },
-                {
-                    name : 'kakao뱅크',
-                    money : 6700,
-                    num : '1234567890',
-                    icon : 'kakao.png'
-                }
-                ,
-                {
-                    name : '하나은행',
-                    money : 6800,
-                    num : '1234567890',
-                    icon : 'hana.png'
-                }
+                // {
+                //     name : 'KB국민은행',
+                //     money : 5700,
+                //     num : '1234567890',
+                //     icon : 'kb.png'
+                // },
+                // {
+                //     name : 'IBK기업은행',
+                //     money : 5800,
+                //     num : '1234567890',
+                //     icon : 'ibk.png'
+                // },
+                // {
+                //     name : 'NH농협은행',
+                //     money : 5900,
+                //     num : '1234567890',
+                //     icon : 'nh.png'
+                // },
+                // {
+                //     name : '수협은행',
+                //     money : 6000,
+                //     num : '1234567890',
+                //     icon : 'suheub.png'
+                // },
+                // {
+                //     name : '대구은행',
+                //     money : 6100,
+                //     num : '1234567890',
+                //     icon : 'dg.png'
+                // },
+                // {
+                //     name : '부산은행',
+                //     money : 6200,
+                //     num : '1234567890',
+                //     icon : 'bnk.png'
+                // },
+                // {
+                //     name : '경남은행',
+                //     money : 6300,
+                //     num : '1234567890',
+                //     icon : 'bnk.png'
+                // },
+                // {
+                //     name : '신한은행',
+                //     money : 6400,
+                //     num : '1234567890',
+                //     icon : 'shinhan.png'
+                // },
+                // {
+                //     name : '우리은행',
+                //     money : 6500,
+                //     num : '1234567890',
+                //     icon : 'woolee.png'
+                // },
+                // {
+                //     name : 'KBANK은행',
+                //     money : 6600,
+                //     num : '1234567890',
+                //     icon : 'kbank.png'
+                // },
+                // {
+                //     name : 'kakao뱅크',
+                //     money : 6700,
+                //     num : '1234567890',
+                //     icon : 'kakao.png'
+                // }
+                // ,
+                // {
+                //     name : '하나은행',
+                //     money : 6800,
+                //     num : '1234567890',
+                //     icon : 'hana.png'
+                // }
 
             ],
             resX : 0,
@@ -163,19 +163,18 @@ export default {
             this.$refs.container.style.left = `-${this.active * 360}px`;
         },
         usageView(){
-            // console.log(this.users[this.active]);
             this.$router.push({name:'accountHistory-page', params:{account:{...this.users[this.active]}}});
         }
     },
     async mounted(){
-        // let res = await axios.get('/bank/lists');
-        // let bank_list = this.$store.getters.getBanks;
-        // this.users = res.data.data.map(x=> {
-        //     let bank = bank_list.find(b => b.code == x.code);
-        //     x.icon = bank.src;
-        //     x.money *= 1;
-        //     return x;
-        // });
+        let res = await axios.get('/bank/lists');
+        let bank_list = this.$store.getters.getBanks;
+        this.users = res.data.data.map(x=> {
+            let bank = bank_list.find(b => b.code == x.code);
+            x.icon = bank.src;
+            x.money *= 1;
+            return x;
+        });
     }
 }
 </script>

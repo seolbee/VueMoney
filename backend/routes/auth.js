@@ -41,8 +41,8 @@ router.post('/login', async function(req, res){
 });
 
 router.post("/session", async function(req, res){
-    console.log(req.cookies['users']);
-    let uid = req.cookies['user'];
+    if(req.cookies.user === undefined) return res.json({user:null});
+    let uid = req.cookies.user;
     let db = await getDB();
     let dbo = db.db('money');
     uid = new ObjectId(uid);
@@ -50,6 +50,7 @@ router.post("/session", async function(req, res){
     db.close();
     req.session.user = user;
     req.session.save();
+    res.json({user:user});
 });
 
 router.post('/authNum', async function(req, res){

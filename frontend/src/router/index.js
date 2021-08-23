@@ -69,7 +69,7 @@ export default new Router({
       ]
     },
     {
-      path:'/accounts/history',
+      path:'/account/history',
       name:'accountHistory-page',
       component: AccountBalanceListComponent,
       meta:{isLogin:true},
