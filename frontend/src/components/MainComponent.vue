@@ -6,7 +6,7 @@
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
                         <div class="accountment_container" ref="container">
-                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="usageView()">
+                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="usageView">
                                 <div class="top">
                                     <img :src="require(`../assets/logos/${user.icon}`)" alt="img">
                                     <p class="name">{{user.name}}</p>
@@ -28,9 +28,10 @@
                     </div>
                 </div>
                 <!-- <use-list :finTechNum="users[active].finTechNum" v-if="users.length != 0"/> -->
+                <use-list/>
             </div>
         </div>
-        <navigator></navigator>
+        <!-- <navigator></navigator> -->
     </div>
 </template>
 <script>
@@ -162,7 +163,8 @@ export default {
             this.$refs.container.style.left = `-${this.active * 360}px`;
         },
         usageView(){
-            this.$router.push({path:'/accounts/history'});
+            // console.log(this.users[this.active]);
+            this.$router.push({name:'accountHistory-page', params:{account:{...this.users[this.active]}}});
         }
     },
     async mounted(){
@@ -187,7 +189,7 @@ export default {
     .container {
         /* background-color: #fafffd; */
         background-color: #fff;
-        border-radius: 30px;
+        border-radius: 30px 30px 0 0;
         width: 100%;
     }
     .container > h1{
@@ -329,7 +331,7 @@ export default {
     }
 
     .accountment.hana{
-        background-color: #679090;
+        background-color: #95b1b1;
         color: white;
     }
 

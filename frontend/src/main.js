@@ -8,12 +8,12 @@ import axios from 'axios';
 
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHome, faCog, faCalendarPlus, faAngleRight, faAngleLeft, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faCog, faCalendarPlus, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import 'es6-promise/auto';
 
-library.add(faHome, faCog, faCalendarPlus, faAngleRight, faAngleLeft, faPlus);
+library.add(faHome, faCog, faCalendarPlus, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 import '../src/assets/css/app.css';
