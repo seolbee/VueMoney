@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var MemoryStore = require('memorystore')(session);
 // var getDB = require('./DB/DB');
 
 require('dotenv').config();
@@ -29,8 +30,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   resave:false,
-  saveUninitialized:false,
-  secret:process.env.COOKIE_SECRET
+  saveUninitialized: false,
+  secret:process.env.COOKIE_SECRET,
+  store : new MemoryStore({
+    checkPeriod: 60 * 60 * 1000 * 24
+  }),
+  cookie : {maxAge : 60 * 60 * 1000 * 24}
 }))
 
 app.use(bodyParser.json());

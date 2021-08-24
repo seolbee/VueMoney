@@ -10,6 +10,7 @@ import AccountRegisterComponent from '../components/AccountRegisterComponent';
 import BankSelectComponent from '../components/BankSelectComponent';
 import AccNoRegisterComponent from '../components/AccNoRegisterComponent';
 import AccountBalanceListComponent from '../components/AccountBalanceListComponent';
+import AccountChartComponent from '../components/AccountChartComponent';
 
 Vue.use(Router);
 
@@ -74,6 +75,13 @@ export default new Router({
       component: AccountBalanceListComponent,
       meta:{isLogin:true},
       props:true
+    },
+    {
+      path:'/usage/history',
+      name:'usageHistory-page',
+      component: AccountChartComponent,
+      props:true,
+      meta:{isLogin:true}
     }
   ]
 });
