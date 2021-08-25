@@ -6,7 +6,7 @@
                 <chart :usage_total="usage_total" :total="total"/>
             </div>
             <div class="usage_box">
-                <p class="name">식/음료</p>
+                <p class="name">{{name}}</p>
                 <p class="usage_total">{{usage_total.toLocaleString()}}원</p>
             </div>
         </div>
@@ -35,7 +35,7 @@ export default {
         'chart' : Chart,
         'navigator' : navigator
     },
-    props:['data', 'total'],
+    props:['data', 'total', 'name'],
     data(){
         return {
             usage_total : 0
@@ -47,17 +47,23 @@ export default {
 }
 </script>
 <style scoped>
-    /* .container{
+    .container{
         background-color: #fafcfe;
-    } */
+    }
+    
     .chart_box{
         display: flex;
         align-items: center;
         /* color: white; */
     }
 
+    .usage_box {
+        padding-left: 20px;
+    }
+
     .usage_box > .name{
-        font-size: 20px;
+        font-size: 18px;
+        color: #555;
     }
 
     .usage_box > .usage_total {
@@ -66,12 +72,13 @@ export default {
 
     .usage_list{
         background-color: white;
-        border-radius: 30px 30px 0 0;
-        min-height: 70%;
-        padding: 20px 30px;
+        height: 70%;
+        padding: 15px;
         display: grid;
-        grid-auto-rows: 50px;
-        gap: 20px 0;
+        border-radius: 30px 30px 0px 0px;
+        /* grid-auto-rows: 50px; */
+        /* gap: 15px 0; */
+        /* box-shadow: 0px -2px 1px 0px #fafcfe; */
     }
     
     .usage{
@@ -79,6 +86,11 @@ export default {
         grid-template-columns: 15% 50% 35%;
         text-align: center;
         line-height: 50px;
+        /* background-color: rgba(255,255,255, .9); */
+        padding: 15px 18px;
+        /* border-radius: 5px; */
+        /* box-shadow: 0px 0px 1px 0px rgba(0,0,0,.1); */
+        border-bottom: 1px solid #eee;
     }
 
     .usage > .icons{

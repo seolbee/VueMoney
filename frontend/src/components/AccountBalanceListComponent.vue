@@ -1,11 +1,12 @@
 <template>
     <div>
         <div class="container" :class="account.icon.split('.')[0]">
+            <navigator/>
             <div class="account">
                 <div class="top">
                     <div class="acc_name">{{account.name}}</div>
-                    <!-- <div class="acc_num">{{account.num}}</div> -->
-                    <div class="acc_num">{{account.accno}}</div>
+                    <div class="acc_num">{{account.num}}</div>
+                    <!-- <div class="acc_num">{{account.accno}}</div> -->
                 </div>
                 <div class="bottom">
                     <div class="usage_price">
@@ -382,7 +383,7 @@ export default {
     }
 
     .account{
-        padding: 40px 20px 30px 20px;
+        padding: 10px 20px 30px 20px;
     }
 
     .account > .top{

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <navigator/>
         <h1>계좌등록</h1>
         <transition name="slide">
             <router-view></router-view>

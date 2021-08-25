@@ -1,9 +1,10 @@
 <template>
     <div>
         <div class="background">
+            <navigator :class="'main'"/>
             <div class="container">
                 <loading v-if="users.length == 0"/>
-                <h1>계좌 내역</h1>
+                <h1>계좌</h1>
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
                         <div class="accountment_container" ref="container">
@@ -186,7 +187,7 @@ export default {
 
     .background{
         background-color: #5BE7CA;
-        padding-top: 100px;
+        /* padding-top: 100px; */
     }
 
     .container {
@@ -194,13 +195,15 @@ export default {
         background-color: #fff;
         border-radius: 30px 30px 0 0;
         width: 100%;
+        margin-top: 10px;
     }
     .container > h1{
-        padding: 20px;
+        padding: 20px 30px;
+        padding-bottom: 0px;
     }
 
     .accounts{
-        height: 250px;
+        height: 240px;
         position: relative;
     }
 

@@ -9,7 +9,7 @@
         <div class="icon-box" @click="onClick(2)" :class="{active : nav == 2}">
             <router-link to="/settings"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></router-link>
         </div> -->
-        <div class="icon-box">
+        <div class="icon-box" @click="goBack()">
             <font-awesome-icon :icon="['fas', 'angle-left']"></font-awesome-icon>
         </div>
         <div class="icon-box">
@@ -33,6 +33,16 @@ export default {
     //    if(this.$router.history.current.path ==="/plan") this.nav = 1;
     //    else if(this.$router.history.current.path === "/settings") this.nav = 2;
     // }
+    data(){
+        return {
+
+        }
+    },
+    methods:{
+        goBack(){
+            this.$router.go(-1);
+        }
+    }
 }
 </script>
 <style scoped>
