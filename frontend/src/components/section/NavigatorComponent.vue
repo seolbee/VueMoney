@@ -9,7 +9,12 @@
         <div class="icon-box" @click="onClick(2)" :class="{active : nav == 2}">
             <router-link to="/settings"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></router-link>
         </div> -->
-        
+        <div class="icon-box">
+            <font-awesome-icon :icon="['fas', 'angle-left']"></font-awesome-icon>
+        </div>
+        <div class="icon-box">
+            <font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon>
+        </div>
     </div>    
 </template>
 <script>
@@ -51,4 +56,16 @@ export default {
     .navigator > .icon-box.active > *{
         color: #5be7c4;
     } */
+
+    .navigator{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        /* box-shadow: 0 1px 3px 0px rgba(0,0,0,.1); */
+    }
+
+    .navigator > .icon-box{
+        font-size: 25px;
+        color : #d8e0df;
+    }
 </style>

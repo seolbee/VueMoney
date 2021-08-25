@@ -1,8 +1,13 @@
 <template>
-    <div>
+    <div class="container">
+        <navigator/>
         <div class="chart_box">
             <div class="chart">
-                <chart/>
+                <chart :usage_total="usage_total" :total="total"/>
+            </div>
+            <div class="usage_box">
+                <p class="name">식/음료</p>
+                <p class="usage_total">{{usage_total.toLocaleString()}}원</p>
             </div>
         </div>
         <div class="usage_list">
@@ -23,21 +28,42 @@
     </div>    
 </template>
 <script>
+import navigator from '@/components/section/NavigatorComponent';
 import Chart from '@/components/section/ChartComponent';
 export default {
     components:{
-        'chart' : Chart
+        'chart' : Chart,
+        'navigator' : navigator
     },
-    props:['data'],
-    mounted(){
-        console.log(this.data);
+    props:['data', 'total'],
+    data(){
+        return {
+            usage_total : 0
+        }
+    },
+    created(){
+        this.usage_total = this.data.map(m=> m.tran_amt).reduce((initvalue, currentvalue)=> initvalue + currentvalue);
     }
 }
 </script>
 <style scoped>
+    /* .container{
+        background-color: #fafcfe;
+    } */
     .chart_box{
-
+        display: flex;
+        align-items: center;
+        /* color: white; */
     }
+
+    .usage_box > .name{
+        font-size: 20px;
+    }
+
+    .usage_box > .usage_total {
+        font-size: 25px;
+    }
+
     .usage_list{
         background-color: white;
         border-radius: 30px 30px 0 0;

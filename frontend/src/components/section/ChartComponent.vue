@@ -13,13 +13,13 @@ export default {
     methods: {
         drawGraph(){
             this.ctx.beginPath();
-            this.ctx.fillStyle="#ddd";
+            this.ctx.fillStyle="#fbfcff";
             this.ctx.arc(this.$refs.canvas.width / 2, this.$refs.canvas.height / 2, this.$refs.canvas.width * 0.4, -Math.PI / 2, Math.PI * 3/2);
             this.ctx.closePath();
             this.ctx.fill();
 
             this.ctx.beginPath();
-            this.ctx.fillStyle="#00aaff";
+            this.ctx.fillStyle="#5be7c4";
             this.ctx.moveTo(this.$refs.canvas.width / 2, this.$refs.canvas.height / 2);
             this.ctx.arc(this.$refs.canvas.width / 2, this.$refs.canvas.height / 2, this.$refs.canvas.width * 0.4, -Math.PI / 2, -Math.PI / 2 + (this.percent *Math.PI * 2 / 100));
             this.ctx.closePath();
@@ -31,7 +31,7 @@ export default {
             this.ctx.closePath();
             this.ctx.fill();
 
-            this.ctx.fillStyle="#000";
+            this.ctx.fillStyle="#5be7c4";
             this.ctx.font = "30px Arial";
             this.ctx.textAlign="center";
             this.ctx.textBaseline="middle";
@@ -40,7 +40,7 @@ export default {
     },
     mounted(){
         this.ctx = this.$refs.canvas.getContext('2d');
-        // this.percent = this.usage_total / this.total * 100;
+        this.percent = this.usage_total / this.total * 100;
         this.drawGraph();
     } 
 }

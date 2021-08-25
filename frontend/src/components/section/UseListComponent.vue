@@ -318,8 +318,9 @@ export default {
     },
     methods : {
         showBalnce(name) {
-            let filter = this.data.filter(x=> x.print_content == name);
-            this.$router.push({path : '/usage/history', params:{data:[...filter]}});
+            let filter = this.data.filter(x=> x.print_content == name && x.inout_type === "출금");
+            let total = this.data.filter(x=> x.inout_type==="출금").map(m=> m.tran_amt * 1).reduce((initvalue, currentvalue)=> initvalue + currentvalue);
+            this.$router.push({name : 'usageHistory-page', params:{data:filter, total:total}});
         },
         async getStatistics() {
             // let res = await axios.get(`/bank/history/${this.finTechNum}`);
