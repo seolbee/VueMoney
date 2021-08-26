@@ -42,7 +42,7 @@ export default {
             let c = 0;
             clearInterval(this.t);
             this.t = setInterval(()=>{
-                c += this.percent / (2000/60);
+                c += this.percent / (2000/100);
                 if(c >= this.percent){
                     c = this.percent;
                     clearInterval(this.t);

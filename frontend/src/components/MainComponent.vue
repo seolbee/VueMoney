@@ -33,6 +33,7 @@
                 <!-- <use-list/> -->
             </div>
         </div>
+        <setting/>
         <!-- <navigator></navigator> -->
     </div>
 </template>
@@ -41,13 +42,15 @@ import navigator from '@/components/section/NavigatorComponent';
 import UseList from '@/components/section/UseListComponent';
 import Toast from '@/components/section/ToastMessageComponent';
 import Loading from '@/components/section/LoadingComponent';
+import setting from '@/components/section/SettingsComponent';
 import axios from 'axios';
 export default {
     components:{
         'navigator':navigator,
         'use-list' :UseList,
         'toast' : Toast,
-        'loading' : Loading
+        'loading' : Loading,
+        'setting' : setting
     },
     data(){
         return{

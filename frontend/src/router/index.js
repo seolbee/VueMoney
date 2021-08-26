@@ -3,7 +3,6 @@ import Router from 'vue-router';
 
 import MainComponent from '../components/MainComponent';
 import PlanComponent from '../components/PlanComponent';
-import SettingsComponent from '../components/SettingsComponent';
 import LoginComponent from '../components/LoginComponent';
 import RegisterComponent from '../components/RegisterComponent';
 import AccountRegisterComponent from '../components/AccountRegisterComponent';
@@ -27,12 +26,6 @@ export default new Router({
       path:'/plan',
       name:'plan-page',
       component : PlanComponent,
-      meta:{isLogin:true}
-    },
-    {
-      path:'/settings',
-      name:'settings-page',
-      component : SettingsComponent,
       meta:{isLogin:true}
     },
     {
