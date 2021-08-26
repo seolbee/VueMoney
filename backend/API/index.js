@@ -69,7 +69,7 @@ function getBalance(token, fintech_use_num){
         request(options, (err, res, body)=>{
 
             let result = JSON.parse(body);
-            resolve({money : result.balance_amt, finTechNum : result.fintech_use_num});
+            resolve(result.balance_amt);
         });
     });
     // request(options, (err, res, body)=>{

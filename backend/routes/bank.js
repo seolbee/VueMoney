@@ -36,8 +36,8 @@ router.get('/lists', async function(req, res){
     }
     for(account of accounts){
         let result = await getBalance(req.session.user.acctoken, account.finTechNum);
-        account.money = result.money;
-        account.finTechNum = result.finTechNum;
+        account.money = result;
+        // account.finTechNum = result.finTechNum;
     }
 
     res.json({success: true, data:accounts});

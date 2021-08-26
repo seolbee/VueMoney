@@ -18,18 +18,18 @@ import '../src/assets/css/app.css';
 
 Vue.config.productionTip = false
 
-// router.beforeEach((to, from, next)=>{
-//   let isLogin = to.meta.isLogin;
-//   let user = store.getters.getUser;
-//   if(isLogin && user == null){
-//     return next('/login');
-//   }
+router.beforeEach((to, from, next)=>{
+  let isLogin = to.meta.isLogin;
+  let user = store.getters.getUser;
+  if(isLogin && user == null){
+    return next('/login');
+  }
 
-//   if(!isLogin && user != null){
-//     return next('/');
-//   }
-//   next();
-// });
+  if(!isLogin && user != null){
+    return next('/');
+  }
+  next();
+});
 
 /* eslint-disable no-new */
 new Vue({

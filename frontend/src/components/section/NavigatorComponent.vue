@@ -1,5 +1,6 @@
 <template>
-    <div class="navigator" :class="this.class">
+    <div>
+        <div class="navigator" :class="className">
         <!-- <div class="icon-box" @click="onClick(0)" :class="{active : nav == 0}">
             <router-link to="/"><font-awesome-icon :icon="['fas', 'home']"></font-awesome-icon></router-link>
         </div>
@@ -9,15 +10,18 @@
         <div class="icon-box" @click="onClick(2)" :class="{active : nav == 2}">
             <router-link to="/settings"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></router-link>
         </div> -->
-        <div class="icon-box" @click="goBack()">
-            <font-awesome-icon :icon="['fas', 'angle-left']"></font-awesome-icon>
+            <div class="icon-box" @click="goBack()">
+                <font-awesome-icon :icon="['fas', 'angle-left']"></font-awesome-icon>
+            </div>
+            <div class="icon-box" @click="setShow(true)">
+                <font-awesome-icon :icon="['fas', 'bars']"></font-awesome-icon>
+            </div>
         </div>
-        <div class="icon-box" @click="setShow(true)">
-            <font-awesome-icon :icon="['fas', 'bars']"></font-awesome-icon>
-        </div>
-    </div>    
+        <setting :show="show" @setShow="setShow"/>
+    </div>
 </template>
 <script>
+import settings from '@/components/section/SettingsComponent';
 export default {
     // data(){
     //     return {
@@ -33,10 +37,13 @@ export default {
     //    if(this.$router.history.current.path ==="/plan") this.nav = 1;
     //    else if(this.$router.history.current.path === "/settings") this.nav = 2;
     // }
-    props:['class'],
+    components : {
+        'setting' : settings
+    },
+    props:['className'],
     data(){
         return {
-
+            show: false
         }
     },
     methods:{
@@ -44,7 +51,7 @@ export default {
             this.$router.go(-1);
         }, 
         setShow(value){
-            
+            this.show = value;            
         }
     }
 }
