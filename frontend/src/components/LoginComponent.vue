@@ -12,6 +12,7 @@
                 <input type="password" name="password" v-model="user.password" :class="{'active' : active == 2, 'error' : is_user.password == -1, 'complete' : is_user.password == 1}" @focus="focusing(2)" @blur="nonfocusing">
             </div>
             <button>로그인</button>
+            <p class="span">처음 왔으면 <router-link to="/register" class="link">회원가입하기</router-link></p>
         </form>
         <toast :msg="msg" :show="show"/>
     </div>
@@ -144,5 +145,12 @@ input.error{
     background-color: white;
     border: 1px solid red;
     box-shadow: 0px 0px 0px 3px #ff5050ab;
+}
+
+.span{
+    font-size: 15px;
+    padding-top: 20px;
+    text-align: center;
+    color: #555;
 }
 </style>

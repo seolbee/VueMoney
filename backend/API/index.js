@@ -31,7 +31,9 @@ function getFinTechNum(user_seq_no, token, code, accno){
             //     console.log(x.bank_code_std == code, x.account_num_masked.substring(0, x.account_num_masked.length - 3) == accno.substring(0, accno.length - 3));
             // });
             // console.log(account);
-            resolve(account.fintech_use_num);
+            console.log(account);
+            if(account === undefined) resolve(false);
+            else resolve(account.fintech_use_num);
         });
     });
     // request(options, (err, res, body)=>{

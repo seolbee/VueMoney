@@ -8,7 +8,7 @@
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
                         <div class="accountment_container" ref="container">
-                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click="usageView">
+                            <div class="accountment" v-for="(user, index) in users" :key="index" :class="user.icon.split('.')[0]" @click.stop.prevent="usageView($event)">
                                 <div class="top">
                                     <img :src="require(`../assets/logos/${user.icon}`)" alt="img">
                                     <p class="name">{{user.name}}</p>
@@ -56,80 +56,93 @@ export default {
                 //     name : 'KB국민은행',
                 //     money : 5700,
                 //     num : '1234567890',
-                //     icon : 'kb.png'
+                //     icon : 'kb.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : 'IBK기업은행',
                 //     money : 5800,
                 //     num : '1234567890',
-                //     icon : 'ibk.png'
+                //     icon : 'ibk.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : 'NH농협은행',
                 //     money : 5900,
                 //     num : '1234567890',
-                //     icon : 'nh.png'
+                //     icon : 'nh.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '수협은행',
                 //     money : 6000,
                 //     num : '1234567890',
-                //     icon : 'suheub.png'
+                //     icon : 'suheub.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '대구은행',
                 //     money : 6100,
                 //     num : '1234567890',
-                //     icon : 'dg.png'
+                //     icon : 'dg.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '부산은행',
                 //     money : 6200,
                 //     num : '1234567890',
-                //     icon : 'bnk.png'
+                //     icon : 'bnk.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '경남은행',
                 //     money : 6300,
                 //     num : '1234567890',
-                //     icon : 'bnk.png'
+                //     icon : 'bnk.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '신한은행',
                 //     money : 6400,
                 //     num : '1234567890',
-                //     icon : 'shinhan.png'
+                //     icon : 'shinhan.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : '우리은행',
                 //     money : 6500,
                 //     num : '1234567890',
-                //     icon : 'woolee.png'
+                //     icon : 'woolee.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : 'KBANK은행',
                 //     money : 6600,
                 //     num : '1234567890',
-                //     icon : 'kbank.png'
+                //     icon : 'kbank.png',
+                //     dropadown_show : false
                 // },
                 // {
                 //     name : 'kakao뱅크',
                 //     money : 6700,
                 //     num : '1234567890',
-                //     icon : 'kakao.png'
+                //     icon : 'kakao.png',
+                //     dropadown_show : false
                 // }
                 // ,
                 // {
                 //     name : '하나은행',
                 //     money : 6800,
                 //     num : '1234567890',
-                //     icon : 'hana.png'
+                //     icon : 'hana.png',
+                //     dropadown_show : false
                 // }
 
             ],
             resX : 0,
             x: 0,
-            active : 0
+            active : 0,
+            dropDown_show: false
         }
     },
     methods:{
@@ -144,6 +157,7 @@ export default {
                 this.active = this.active > 0 ? this.active - 1 : 0;
             }
             this.$refs.container.style.left = `-${this.active * 360}px`;
+            this.dropDown_show = false;
 
         // },
         // leave(el, done){
@@ -166,8 +180,10 @@ export default {
         changeAccount(index){
             this.active = index;
             this.$refs.container.style.left = `-${this.active * 360}px`;
+            this.dropDown_show = false;
         },
-        usageView(){
+        usageView(e){
+            console.log(e);
             this.$router.push({name:'accountHistory-page', params:{account:{...this.users[this.active]}}});
         }
     },
@@ -263,8 +279,9 @@ export default {
 
     .accountment > .top{
         display: flex;
-        align-items: center;
+        /* justify-content: space-between; */
         margin-bottom: 5px;
+        align-items: center;
     }
 
     .accountment > .top >  img{
@@ -275,6 +292,7 @@ export default {
         padding-left: 10px;
         font-size: 18px;
     }
+
 
     .accountment > .acc_money{
         position: absolute;

@@ -1,7 +1,7 @@
 var express = require('express');
 var getDB = require('../DB/DB');
 var router = express.Router();
-var {getUseCode, getFinTechNum, getBalance, getAccountBalance} = require('../API/index');
+var {getFinTechNum, getBalance, getAccountBalance} = require('../API/index');
 
 /* GET users listing. */
 router.post('/register', async function(req, res){
@@ -17,6 +17,11 @@ router.post('/register', async function(req, res){
     }
 
     let finTechNum = await getFinTechNum(seqno, acctoken, code, accno);
+
+    if(!finTechNum) {
+        db.close();
+        return res.json({success : false, msg: "없는 계좌 입니다. 다시 입력해주세요"});
+    }
 
     dbo.collection("accounts").insertOne({'accno' : accno, 'code':code, 'name' : name, 'uid': uid, 'finTechNum' : finTechNum}, function(err, resp){
         if(err) res.json({success:false, msg:'오류'});
@@ -44,10 +49,14 @@ router.get('/lists', async function(req, res){
     db.close();
 });
 
-router.get("/history/:finTechNum", async function(req, res){
+router.get("/history/:finTechNum", async function(req, res) {
     let finTechNum = req.params.finTechNum;
     let data = await getAccountBalance(req.session.user.acctoken, finTechNum);
     res.json({data:data});
 });
+
+router.get('/delete/:finTechNum', async function(req, res) {
+    
+})
 
 module.exports = router;

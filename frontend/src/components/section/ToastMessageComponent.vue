@@ -22,10 +22,10 @@ export default {
         color: white;
         position: fixed;
         bottom: -70px;
-        width: 60%;
         text-align: center;
-        padding: 15px 0;
+        padding: 15px 10px;
         border-radius: 30px;
+        width: 80%;
         left: 50%;
         transform: translateX(-50%);
         /* opacity: 0.9; */

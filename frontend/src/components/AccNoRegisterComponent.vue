@@ -45,13 +45,15 @@ export default {
             let name = this.name;
             let res = await axios.post('/bank/register', {code, name, accno});
             this.show=true;
-            this.msg="계좌등록 완료";
+            this.msg=res.data.msg;
             setTimeout(()=>{
                 this.show=false;
             }, 1500)
-            setTimeout(()=>{
-                if(res.data.success) this.$router.push('/');
-            }, 2000)
+            if(res.data.success) {
+                setTimeout(()=>{
+                    this.$router.push('/');
+                }, 2000)
+            }
         },
         focus(){
             this.active = true;

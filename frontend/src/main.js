@@ -8,10 +8,10 @@ import axios from 'axios';
 
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faHome, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp, faCircleNotch, faBars} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp, faCircleNotch, faBars, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
-library.add(faHome, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp, faCircleNotch, faBars);
+library.add(faHome, faAngleRight, faAngleLeft, faPlus, faCaretDown, faCaretUp, faCircleNotch, faBars, faEllipsisV);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 import '../src/assets/css/app.css';

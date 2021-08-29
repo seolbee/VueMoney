@@ -57,10 +57,9 @@ router.post('/authNum', async function(req, res){
     
 });
 
-router.post('/logout', async function(req, res){
-    req.session.destroy(()=>{
-        res.json({msg:"로그아웃"});
-    });
+router.get('/logout', function(req, res){
+    req.session.destroy();
+    res.json({'success' : true});
 });
 
 module.exports = router;

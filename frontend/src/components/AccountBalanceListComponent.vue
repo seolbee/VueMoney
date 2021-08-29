@@ -498,7 +498,7 @@ export default {
         background-color: white;
         border-radius: 30px 30px 0 0;
         min-height: 70%;
-        padding: 20px 30px;
+        /* padding: 20px 30px; */
         display: grid;
         grid-auto-rows: 50px;
         gap: 20px 0;
@@ -509,6 +509,7 @@ export default {
         grid-template-columns: 15% 50% 35%;
         text-align: center;
         line-height: 50px;
+        padding: 20px;
     }
 
     .usage > .icons{

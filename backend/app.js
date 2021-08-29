@@ -5,13 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var MemoryStore = require('memorystore')(session);
+// var MemoryStore = require('memorystore')(session);
+var FileStore = require('session-file-store')(session);
 // var getDB = require('./DB/DB');
 
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var bankRouter = require('./routes/bank');
 
@@ -32,9 +33,7 @@ app.use(session({
   resave:false,
   saveUninitialized: false,
   secret:process.env.COOKIE_SECRET,
-  store : new MemoryStore({
-    checkPeriod: 60 * 60 * 1000 * 24
-  }),
+  store : new FileStore(),
   cookie : {maxAge : 60 * 60 * 1000 * 24}
 }))
 
@@ -55,7 +54,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(require('connect-history-api-fallback')());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/bank', bankRouter);
 
