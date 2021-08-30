@@ -8,6 +8,8 @@ var session = require('express-session');
 // var MemoryStore = require('memorystore')(session);
 var FileStore = require('session-file-store')(session);
 // var getDB = require('./DB/DB');
+var mongoose = require('mongoose');
+var url = require('./DB/credential');
 
 require('dotenv').config();
 
@@ -39,6 +41,8 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+mongoose.connect(url, {useNewUrlParser:true, useUnifiedTopology: true, dbname:"money"});
 
 // app.use(async function(req, res){
 //     let db = await getDB();

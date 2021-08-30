@@ -325,7 +325,6 @@ export default {
         async getStatistics() {
             let res = await axios.get(`/bank/history/${this.finTechNum}`);
             this.data = res.data.data;
-            console.log(this.data);
             this.use_list.forEach(x=>{
                 let filter = this.data.filter(f=> f.print_content == x.name && f.inout_type === "출금").map(m => m.tran_amt *= 1);
                 x.price = 0;
