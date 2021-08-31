@@ -3,7 +3,7 @@
         <div class="background">
             <navigator :className="'main'"/>
             <div class="container">
-                <loading v-if="users.length == 0"/>
+                <loading v-if="show"/>
                 <h1>계좌</h1>
                 <div class="accounts">
                     <div class="accountment_box" @touchstart="swipe_start($event)" @touchend="swipe_stop($event)">
@@ -29,7 +29,7 @@
                         <div class="circle" :key="users.length" :class="{'active' : users.length == active}" @click="changeAccount(users.length)"></div>
                     </div>
                 </div>
-                <use-list :finTechNum="users[active].finTechNum" v-if="users.length != 0 && active != users.length"/>
+                <use-list :finTechNum="users[active].finTechNum" v-if="users.length !== 0 && active != users.length"/>
                 <!-- <use-list/> -->
             </div>
         </div>
@@ -142,7 +142,8 @@ export default {
             resX : 0,
             x: 0,
             active : 0,
-            dropDown_show: false
+            dropDown_show: false,
+            show : false
         }
     },
     methods:{
@@ -189,13 +190,17 @@ export default {
     },
     async mounted(){
         let res = await axios.get('/bank/lists');
-        let bank_list = this.$store.getters.getBanks;
-        this.users = res.data.data.map(x=> {
-            let bank = bank_list.find(b => b.code == x.code);
-            x.icon = bank.src;
-            x.money *= 1;
-            return x;
-        });
+        if(res.data.data != null){
+            this.show = true;
+            let bank_list = this.$store.getters.getBanks;
+            this.users = res.data.data.map(x=> {
+                let bank = bank_list.find(b => b.code == x.code);
+                x.icon = bank.src;
+                x.money *= 1;
+                return x;
+            });
+            setTimeout(()=>{this.show = false}, 2000);
+        }
     }
 }
 </script>

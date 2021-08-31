@@ -21,7 +21,7 @@
             <div class="input-box">
                 <label for="#">비밀번호 확인</label>
                 <input type="password" name="password_confirm" v-model="user.passwordc" :class="{'active' : active == 4, 'error' : is_user.passwordc == -1, 'complete' : is_user.passwordc == 1}" @focus="focusing(4)" @blur="nonfocusing">
-                <p v-show="is_user.passwordc == -1">비밀번호 확인은 비밀번호와 같아야 하며 최소 5자 이상입니다.</p>
+                <p v-show="is_user.passwordc == -1">비밀번호 확인은 비밀번호와 같아야 합니다.</p>
             </div>
             <button class="btn">회원가입</button>
         </form>
@@ -65,16 +65,17 @@ export default {
                 this.is_user.password = -1;
                 this.is_user.passwordc = -1;
             }
-            if(this.is_user.id === -1 || this.is_user.name === -1 || this.is_user.password === -1 || this.is_user.passwordc === -1) return false;
+            if(this.is_user.id === -1 || this.is_user.name === -1 || this.is_user.password === -1 || this.is_user.passwordc === -1) {
+                this.msg = "잘못 입력된 값이 있습니다. 확인해보세요";
+                this.show = true;
+                setTimeout(()=>this.show = false, 1500);
+                return;
+            };
             let res = await axios.post('/auth/register', this.user);
             this.msg = res.data.msg;
             this.show = true;
-            setTimeout(()=>{
-                this.show = false;
-            }, 1500);
-            setTimeout(()=>{
-                if(res.data.success) this.$router.push('login');
-            }, 2000);
+            setTimeout(()=> this.show = false, 1500);
+            setTimeout(()=>{if(res.data.success) this.$router.push('login')}, 2000);
         },
         focusing(a){
             this.active = a;

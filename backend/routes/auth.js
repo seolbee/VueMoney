@@ -39,6 +39,7 @@ router.post('/login', async function(req, res){
     }
     // let resp = await dbo.collection('users').findOne({'id' : id, 'password':password});
     let user = await User.findOne({'id' : id, 'password' : password});
+    if(user == null) return res.json({success:false, msg:'아이디 또는 비밀번호가 잘못되었습니다.'});
     req.session.user = user;
     res.cookie('user', user._id, { httpOnly: true, secure : true });
     req.session.save(()=>{
