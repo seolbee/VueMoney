@@ -21,7 +21,7 @@
             <div class="input-box">
                 <label for="#">비밀번호 확인</label>
                 <input type="password" name="password_confirm" v-model="user.passwordc" :class="{'active' : active == 4, 'error' : is_user.passwordc == -1, 'complete' : is_user.passwordc == 1}" @focus="focusing(4)" @blur="nonfocusing">
-                <p v-show="is_user.passwordc == -1">비밀번호 확인은 비밀번호와 같아야 합니다.</p>
+                <p v-show="is_user.passwordc == -1" class="span">비밀번호 확인은 비밀번호와 같아야하며,<br/> 최소 5자입니다.</p>
             </div>
             <button class="btn">회원가입</button>
         </form>
@@ -92,7 +92,7 @@ export default {
                 if(this.active == 1 && id_reg.test(this.user.id.trim())) this.is_user.id = 1;
                 else if(this.active == 1) this.is_user.id = -1;
 
-                let name_reg = new RegExp(/^[a-z0-9ㄱ-횧]{1,10}$/, "gi");
+                let name_reg = new RegExp(/^[a-z0-9ㄱ-횧]{2,10}$/, "gi");
                 if(this.active == 2 && name_reg.test(this.user.name.trim())) this.is_user.name = 1;
                 else if(this.active == 2) this.is_user.name = -1;
 
@@ -125,7 +125,7 @@ form{
     /* margin: 10px 0; */
     position: relative;
     /* padding: 10px 0; */
-    height: 100px;
+    height: 110px;
     width: 100%;
 }
 

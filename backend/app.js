@@ -5,9 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-// var MemoryStore = require('memorystore')(session);
 var FileStore = require('session-file-store')(session);
-// var getDB = require('./DB/DB');
 var mongoose = require('mongoose');
 var url = require('./DB/credential');
 
@@ -44,21 +42,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 mongoose.connect(url, {useNewUrlParser:true, useUnifiedTopology: true, dbname:"money"});
 
-// app.use(async function(req, res){
-//     let db = await getDB();
-//     let dbo = db.db('money');
-//     let uid = req.cookies['user'];
-//     let user = await dbo.collection('users').findOne({'uid':uid});
-//     req.session.user = user;
-//     req.session.save(()=>{
-//       db.close();
-//     });
-// });
-
 app.use(require('connect-history-api-fallback')());
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/bank', bankRouter);
 
@@ -79,6 +65,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-//user_seq_no : 1100773662
-//access_token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzczNjYyIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MzYxODMxNzMsImp0aSI6IjgwN2ZlZGRlLTA1NDAtNDllZC1hZTlhLTA2YzM3YmYwMjJiZiJ9.zzZ6Bh0FOHkw0cMVNzpkBFIM7gwNHe6m5aT02J0Cq8A
-//refresh_token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzczNjYyIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MzcwNDcxNzMsImp0aSI6IjFiNjBmNGI4LWJjYTItNGYyZi05MzI2LTNjZGQ5OWM4NGJiZCJ9.yWsF5PyI6DLZHJCCagfog73kzDFyuw8m9aZ8HhGyRaM

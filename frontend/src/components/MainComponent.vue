@@ -143,7 +143,7 @@ export default {
             x: 0,
             active : 0,
             dropDown_show: false,
-            show : false
+            show : true
         }
     },
     methods:{
@@ -191,7 +191,6 @@ export default {
     async mounted(){
         let res = await axios.get('/bank/lists');
         if(res.data.data != null){
-            this.show = true;
             let bank_list = this.$store.getters.getBanks;
             this.users = res.data.data.map(x=> {
                 let bank = bank_list.find(b => b.code == x.code);
@@ -200,7 +199,7 @@ export default {
                 return x;
             });
             setTimeout(()=>{this.show = false}, 2000);
-        }
+        } else this.show = false;
     }
 }
 </script>

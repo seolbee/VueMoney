@@ -40,7 +40,12 @@ export default {
     methods:{
         async getAccountment(){
             let accno = this.accno;
-            if(accno.trim() === "") return false;
+            if(accno.trim() === "") {
+                this.msg="계좌번호를 입력하세요";
+                this.show = true;
+                setTimeout(()=> this.show = false, 2000);
+                return;
+            }
             let code = this.code;
             let name = this.name;
             let res = await axios.post('/bank/register', {code, name, accno});
