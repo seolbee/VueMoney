@@ -198,8 +198,8 @@ export default {
                 x.money *= 1;
                 return x;
             });
-            setTimeout(()=>{this.show = false}, 2000);
-        } else this.show = false;
+        }
+        this.show = false;
     }
 }
 </script>
